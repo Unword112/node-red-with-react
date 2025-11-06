@@ -166,4 +166,4 @@ function SensorSimulator() {
   );
 }
 
-export default SensorSimulator;
+export default SensorSim;

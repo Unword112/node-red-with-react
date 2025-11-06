@@ -5,14 +5,14 @@ import './App.css'
 
 //import ChartComponent from './api-chart/chartComponent.jsx';
 
-import SensorSimulator from './slider-test/sensorSim';
+import SensorSimulator_with_button from './slider-test/sensorSim-with-button';
 
 function App() {
 
   return (
     <>
       <div>
-        <SensorSimulator />
+        <SensorSimulator_with_button />
       </div>
     </>
   )
