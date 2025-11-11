@@ -1,0 +1,101 @@
+/* * MapOverview.css
+ * สไตล์สำหรับหน้า Map (แผนที่จำลอง)
+ * ธีมสีเหลืองทอง
+ */
+
+:root {
+  --primary-color: #FFD700; /* สีเหลืองทอง (Gold) */
+  --color-green: #3fb950;  /* สีเขียว (Surplus) */
+  --color-red: #f85149;    /* สีแดง (Demand) */
+  --bg-card: #161b22;
+  --border-color: #2d343e;
+}
+
+.map-page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-loading {
+  font-size: 1.5em;
+  color: var(--primary-color);
+  margin-top: 100px;
+}
+
+/* 1. Map Container (กรอบแผนที่) */
+.map-container {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 800px; /* ความสูงขั้นต่ำ */
+  position: relative;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.map-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+/* 2. Village Pins (หมุดปัก) */
+.village-pin {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transform: translate(-50%, -100%); 
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.village-pin:hover {
+  transform: translate(-50%, -100%) scale(1.15); 
+  z-index: 10;
+  filter: drop-shadow(0 0 10px currentColor); 
+}
+
+/* ไอคอนหมุด (วงกลม) */
+.pin-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.7);
+  transition: all 0.2s ease;
+}
+
+.village-pin:hover .pin-icon {
+  transform: scale(1.2);
+}
+
+/* ป้ายชื่อ */
+.pin-label {
+  background-color: rgba(22, 27, 34, 0.85); 
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  font-size: 0.9em;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  white-space: nowrap;
+  border: 1px solid var(--border-color);
+}
+
+/* 3. Pin Colors (สีตามสถานะ) */
+.village-pin.pin-yellow .pin-icon { background-color: var(--primary-color); }
+.village-pin.pin-yellow { color: var(--primary-color); }
+
+.village-pin.pin-green .pin-icon { background-color: var(--color-green); }
+.village-pin.pin-green { color: var(--color-green); }
+
+.village-pin.pin-red .pin-icon { background-color: var(--color-red); }
+.village-pin.pin-red { color: var(--color-red); }
+

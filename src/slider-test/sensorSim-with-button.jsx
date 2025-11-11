@@ -22,7 +22,7 @@ function SensorSimulator_with_button() {
     const [availableUnits, setAvailableUnits] = useState([]); 
     const [selectedUnitId, setSelectedUnitId] = useState('unit01'); 
     const [selectedUnitName, setSelectedUnitName] = useState('Default Unit'); // เก็บชื่อ Unit ที่ถูกเลือก
-    const NODE_RED_API_URL = "http://192.168.1.247:1880"; 
+    const NODE_RED_API_URL = `http://${import.meta.env.VITE_MQTT_HOST}:1880`;
 
     // State สำหรับเก็บค่า Slider ทั้ง 4 ตัว
     const [sensorValues, setSensorValues] = useState({
@@ -50,7 +50,8 @@ function SensorSimulator_with_button() {
         // --- ส่วนดึงข้อมูล Units จาก Node-RED API ---
         const fetchUnits = async () => {
             try {
-                const response = await fetch(`${NODE_RED_API_URL}/api/units`);
+                const response = await fetch(`${NODE_RED_API_URL}/api/villages/status`);
+                
                 if (!response.ok) {
                     throw new Error('Failed to fetch units from Node-RED');
                 }
@@ -77,7 +78,7 @@ function SensorSimulator_with_button() {
         }
 
         const clientId = 'react_sim_' + Math.random().toString(16).substr(2, 8);
-        const mqttClient = new Paho.Client(MQTT_HOST, Number(MQTT_PORT), clientId);
+        const mqttClient = new Paho.Client(MQTT_HOST, Number(MQTT_PORT), "", clientId);
         
         mqttClient.onConnectionLost = (response) => { setIsConnected(false); addLog('⚠️ Lost connection'); };
         
@@ -195,10 +196,10 @@ function SensorSimulator_with_button() {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div>
-                    {renderSlider('Temperature', 0, 100, 1)}
-                    {renderSlider('Vibration', 0, 10000, 10)}
-                    {renderSlider('RPM Sensor', 0, 8000, 10)}
-                    {renderSlider('Water Level', 0, 1000, 1)}
+                    {renderSlider('Temperature', -20, 50, 1)}
+                    {renderSlider('Vibration', 0.10, 50.00, 1)}
+                    {renderSlider('RPM Sensor', 0, 1800, 10)}
+                    {renderSlider('Water Level', 0.5, 35, 1)}
                 </div>
                 {/* Log Area */}
                 <div style={{ border: '1px solid #eee', padding: '15px', height: '400px', overflowY: 'scroll', backgroundColor: '#f9f9f9' }}>
