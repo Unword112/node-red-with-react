@@ -3,7 +3,6 @@ import MapOverview from './MapOverview';
 import VillageDashboard from './VillageDashboard'; 
 import './App.css'; 
 
-
 function App() {
   const [currentPage, setCurrentPage] = useState('map'); 
   const [selectedVillageId, setSelectedVillageId] = useState(null);
@@ -45,12 +44,7 @@ function App() {
           </a>
           
           {/* B. ปุ่มภาพรวมทั้งหมด (ใหม่) */}
-          <a 
-            href="#"
-            // Active เมื่อเราอยู่หน้า Dashboard และดู All Units
-            className={currentPage === 'dashboard' && selectedVillageId === 'all' ? 'active' : ''}
-            onClick={navigateToAllUnits}
-          >
+          <a >
             ภาพรวมทั้งหมด
           </a>
           
@@ -67,6 +61,7 @@ function App() {
           <VillageDashboard villageId={selectedVillageId} />
         )}
       </main>
+
     </div>
   );
 }

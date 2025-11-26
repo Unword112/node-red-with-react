@@ -75,11 +75,11 @@ function VillageDashboard({ villageId }) {
   const [statusColor, setStatusColor] = useState("#FFD700");
 
   // *** Dynamic Max Capacity ***
-  const maxCapacity = villageId === 'all' ? SYSTEM_MAX_CAPACITY : SINGLE_UNIT_MAX_POWER;
+  const maxCapacity = SINGLE_UNIT_MAX_POWER;
   const powerDiffThreshold = maxCapacity * 0.1; // กำหนด Threshold 10% ของ Max Capacity
 
   useEffect(() => {
-    const idToFetch = villageId || 'all'; 
+    const idToFetch = villageId; 
 
     const fetchData = async (sensorType, endpoint) => {
       try {
@@ -94,7 +94,6 @@ function VillageDashboard({ villageId }) {
     };
 
     const fetchAllData = async () => {
-      // ดึงข้อมูล 4 ตัวพร้อมกัน
       const [temp, rpm, level, vibration] = await Promise.all([
         fetchData('temperature', 'temperature-history'),
         fetchData('rpm', 'rpm-history'),
@@ -227,10 +226,10 @@ function VillageDashboard({ villageId }) {
   return (
     <> 
       <h1>
-        Village Dashboard: {villageId === 'all' ? 'ภาพรวมทั้งหมด' : (villageId || 'Initializing...')} 
+        Village Dashboard: {villageId} 
       </h1>
+
       <div className="dashboard-layout">
-        
         {/* Temperature */}
         <div className="chart-card chart-temp">
           <h3>Temperature</h3>
