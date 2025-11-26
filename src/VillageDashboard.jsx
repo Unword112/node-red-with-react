@@ -244,11 +244,11 @@ function VillageDashboard({ villageId }) {
           <h3>System Status</h3>
           {currentPower === 0 ? (<div className="loading-text">Waiting for Data...</div>) : (
             <> 
-              <div className="gauge-value">{currentPower.toFixed(0)} W</div> 
+              <div className="gauge-value">{currentPower.toFixed(0) / 1000} kW</div> 
               <div className="chart-wrapper"><Doughnut data={powerGaugeData} options={gaugeOptions} /></div>
               <div className="power-stats">
-                <div><span>City Demand:</span><strong>{cityDemand.toFixed(0)} W</strong></div>
-                <div><span>Max Capacity:</span><strong>{maxCapacity} W</strong></div>
+                <div><span>City Demand:</span><strong>{cityDemand.toFixed(0) / 1000} kW</strong></div>
+                <div><span>Max Capacity:</span><strong>{maxCapacity / 1000} kW</strong></div>
                 <div className="stat-status" style={{ color: statusColor }}>{systemStatus}</div>
               </div>
             </>

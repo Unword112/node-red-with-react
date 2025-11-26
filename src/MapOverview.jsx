@@ -45,7 +45,7 @@ function MapOverview({ onVillageSelect }) {
     if (status === 'surplus') return 'pin-green';
     if (status === 'demand') return 'pin-red';
     // ถ้า status เป็น undefined หรือค่าอื่นๆ ที่ไม่ใช่ surplus/demand
-    return 'pin-yellow'; // normal (Default Pin)
+    return 'pin-yellow';
   };
 
   return (
@@ -69,11 +69,8 @@ function MapOverview({ onVillageSelect }) {
           {/* Render หมุดปัก (Pins) */}
           {villages.map((village) => (
             <div
-              // key={village.unit_id} (ต้องใช้ key ที่ไม่ซ้ำ)
               key={village.unit_id} 
-              // status เป็น undefined จะใช้ pin-yellow
               className={`village-pin ${getPinColorClass(village.status)}`}
-              // พิกัดถูกต้อง: ใช้ map_x และ map_y ที่ดึงมาจาก DB
               style={{ left: `${village.map_x}%`, top: `${village.map_y}%` }}
               onClick={() => onVillageSelect(village.unit_id)}
             >

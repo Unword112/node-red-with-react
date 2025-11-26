@@ -3,7 +3,6 @@ import MapOverview from './MapOverview';
 import VillageDashboard from './VillageDashboard'; 
 import './App.css'; 
 
-import SensorSimulator_with_button from './slider-test/sensorSim-with-button';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('map'); 
@@ -14,15 +13,12 @@ function App() {
     setCurrentPage('dashboard');    
   };
 
-  // *** ฟังก์ชันใหม่: สำหรับดูภาพรวมทั้งหมด ***
   const navigateToAllUnits = (event) => {
     event.preventDefault(); 
-    // ตั้งค่า selectedVillageId เป็น 'all' เพื่อให้ Dashboard ดึงข้อมูลรวม
     setSelectedVillageId('all'); 
     setCurrentPage('dashboard');
   };
 
-  // ฟังก์ชันสำหรับคลิกเมนู "Map Overview"
   const navigateToMap = (event) => { 
     event.preventDefault(); 
     setCurrentPage('map');
@@ -71,8 +67,6 @@ function App() {
           <VillageDashboard villageId={selectedVillageId} />
         )}
       </main>
-
-      <SensorSimulator_with_button />
     </div>
   );
 }
