@@ -130,6 +130,12 @@ function VillageDashboard({ villageId }) {
       const simulatedDemand = baseDemand + (Math.random() - 0.5) * demandRange;
       setCityDemand(simulatedDemand);
 
+      if (idToFetch !== calculatedPower > 0) {
+        if (simulatedDemand > 0) {
+            sendPowerLog(idToFetch, calculatedPower, simulatedDemand); 
+        }
+      }
+
       // ------------------------------------
       // *** Post Power Log และ Status Logic ***
       // ------------------------------------
@@ -164,8 +170,6 @@ function VillageDashboard({ villageId }) {
     return () => clearInterval(intervalId);
 
   }, [villageId, maxCapacity]); // Dependency array
-
-  // ... (ส่วน Options, Data, และ Render Slider ใช้โค้ดเดิม) ...
 
   const createChartData = (history, label, color) => ({
     labels: history.map(d => new Date(d.timestamp).toLocaleTimeString()),

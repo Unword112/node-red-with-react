@@ -178,3 +178,18 @@
         grid-row: auto;
     }
 }
+
+@media (max-width: 1200px) { 
+    .dashboard-layout {
+        grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ */
+        grid-template-rows: auto;       /* สูงตามเนื้อหา */
+    }
+    
+    /* จัดตำแหน่งใหม่ให้สวยงาม */
+    .chart-temp { grid-column: 1 / 3; grid-row: 1; } /* เต็มความกว้าง */
+    .chart-rpm { grid-column: 1 / 3; grid-row: 2; }
+    /* ที่เหลือเรียงตามลำดับปกติ */
+    .chart-flow { grid-column: 1 / 2; grid-row: 3; }
+    .chart-level { grid-column: 2 / 3; grid-row: 3; }
+    .chart-vibration { grid-column: 1 / 3; grid-row: 4; }
+}

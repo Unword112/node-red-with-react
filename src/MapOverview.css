@@ -26,22 +26,19 @@
 
 /* 1. Map Container (กรอบแผนที่) */
 .map-container {
-  width: 100%;
-  max-width: 1400px;
-  min-height: 800px; /* ความสูงขั้นต่ำ */
-  position: relative;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    position: relative;
+    width: 100%;
+    /* ให้ความสูงปรับตามอัตราส่วนภาพ (AspectRatio) หรือ auto */
+    height: auto; 
+    overflow: hidden; /* ป้องกันภาพล้น */
+    border-radius: 12px;
+    border: 1px solid #2d343e;
 }
 
 .map-background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
+    width: 100%;
+    height: auto;
+    display: block; /* ลบช่องว่างใต้ภาพ */
 }
 
 /* 2. Village Pins (หมุดปัก) */
@@ -99,3 +96,15 @@
 .village-pin.pin-red .pin-icon { background-color: var(--color-red); }
 .village-pin.pin-red { color: var(--color-red); }
 
+/* Responsive สำหรับหมุดปัก */
+@media (max-width: 900px) {
+    .village-pin {
+        /* ปรับขนาดหมุดในมือถือให้กดง่ายขึ้น หรือเล็กลงตามความเหมาะสม */
+        transform: translate(-50%, -50%) scale(0.8); /* ย่อหมุดลงนิดหน่อยถ้ารก */
+    }
+    
+    .pin-label {
+        font-size: 10px; /* ลดขนาดตัวหนังสือชื่อหมู่บ้าน */
+        padding: 2px 6px;
+    }
+}

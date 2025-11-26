@@ -17,9 +17,12 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100vw; /* ใช้ viewport width เต็มจอ */
+  max-width: 100%; /* ป้องกันการล้น */
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden; /* ป้องกัน Scroll แนวนอน */
 }
 
 /* 2. Navbar (เมนูหลัก) */
@@ -80,8 +83,10 @@
 /* 3. Content Area (พื้นที่แสดงผล) */
 .app-content {
   flex-grow: 1;
-  padding: 20px;
-  width: 100%;
+  width: 100%; 
+  max-width: 100%; /* ลบค่า max-width เดิมที่อาจเป็น 1200px หรือ 1600px ออก */
+  margin: 0;      /* ลบ margin: 0 auto ออก */
+  padding: 0;     /* ลบ padding ออกเพื่อให้ Map ชิดขอบ (หรือใส่ padding น้อยๆ ถ้าต้องการ) */
   box-sizing: border-box;
 }
 
@@ -97,3 +102,36 @@ h1 {
     text-align: center;
 }
 
+@media (max-width: 900px) {
+  /* 1. ปรับ Navbar ให้เป็นแนวตั้ง */
+  .app-nav {
+    flex-direction: column; /* เรียงลงล่าง */
+    padding: 15px 20px;
+    gap: 15px; /* ระยะห่างระหว่างโลโก้กับเมนู */
+  }
+
+  /* 2. ปรับเมนูให้เรียงแนวตั้งหรือยืดเต็ม */
+  .nav-menu {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap; /* ให้ปุ่มตกลงมาถ้าพื้นที่ไม่พอ */
+    gap: 10px;
+  }
+
+  .app-nav a {
+    font-size: 0.95em; /* ลดขนาดตัวหนังสือเล็กน้อย */
+    padding: 8px 15px;
+    justify-content: center; /* จัดตัวหนังสือกลางปุ่ม */
+    flex-grow: 1; /* ให้ปุ่มยืดเต็มพื้นที่ */
+  }
+
+  /* 3. ปรับ Content ให้ชิดขอบมากขึ้นในมือถือ */
+  .app-content {
+    padding: 10px; /* ลด padding รอบนอก */
+  }
+  
+  h1 {
+      font-size: 1.8em; /* ลดขนาดหัวข้อ H1 */
+      margin-bottom: 20px !important;
+  }
+}
